@@ -85,7 +85,7 @@ class CrawlerFinanceYahoo:
         table = self.driver.find_element(By.XPATH, XPATH)
         html_table = table.get_attribute('innerHTML')
         time.sleep(5)
-        table_body = BeautifulSoup(html_table)
+        table_body = BeautifulSoup(html_table, "html.parser")
 
         new_list = self.process_tbody(table_body)
 
