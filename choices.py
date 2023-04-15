@@ -1,0 +1,67 @@
+from enum import Enum
+
+
+class Fields(Enum):
+    SYMBOL = 0
+    NAME = 1
+    PRICE = 2
+
+
+XPATH_REGION = {
+    'Argentina': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[1]/label/input',
+    'Australia': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[3]/label/input',
+    'Austria': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[2]/label/input',
+    'Belgium': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[4]/label/input',
+    'Brazil': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[5]/label/input',
+    'Canada': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[6]/label/input',
+    'Chile': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[8]/label/input',
+    'China': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[9]/label/input',
+    'Czechia': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[10]/label/input',
+    'Denmark': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[12]/label/input',
+    'Egypt': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[14]/label/input',
+    'Estonia': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[13]/label/input',
+    'Finland': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[16]/label/input',
+    'France': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[17]/label/input',
+    'Germany': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[11]/label/input',
+    'Greece': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[19]/label/input',
+    'Hong Kong SAR China': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[20]/label/input',
+    'Hungary': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[21]/label/input',
+    'Iceland': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[26]/label/input',
+    'India': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[25]/label/input',
+    'Indonesia': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[22]/label/input',
+    'Ireland': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[23]/label/input',
+    'Israel': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[24]/label/input',
+    'Italy': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[27]/label/input',
+    'Japan': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[28]/label/input',
+    'Kuwait': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[30]/label/input',
+    'Latvia': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[33]/label/input',
+    'Lithuania': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[32]/label/input',
+    'Malaysia': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[35]/label/input',
+    'Mexico': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[34]/label/input',
+    'Netherlands': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[36]/label/input',
+    'New Zealand': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[38]/label/input',
+    'Norway': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[37]/label/input',
+    'Pakistan': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[41]/label/input',
+    'Peru': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[39]/label/input',
+    'Philippines': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[40]/label/input',
+    'Poland': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[42]/label/input',
+    'Portugal': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[43]/label/input',
+    'Qatar': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[44]/label/input',
+    'Russia': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[45]/label/input',
+    'Saudi Arabia': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[46]/label/input',
+    'Singapore': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[48]/label/input',
+    'South Africa': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[56]/label/input',
+    'South Korea': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[29]/label/input',
+    'Spain': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[15]/label/input',
+    'Sri Lanka': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[31]/label/input',
+    'Suriname': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[49]/label/input',
+    'Sweden': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[47]/label/input',
+    'Switzerland': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[7]/label/input',
+    'Taiwan': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[52]/label/input',
+    'Thailand': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[50]/label/input',
+    'Turkey': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[51]/label/input',
+    'United Kingdom': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[18]/label/input',
+    'United States': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[53]/label/input',
+    'Venezuela': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[54]/label/input',
+    'Vietnam': '//*[@id="dropdown-menu"]/div/div[2]/ul/li[55]/label/input'
+}
