@@ -3,9 +3,11 @@ version: "3.8"
 services:
     crawler_yahoo:
         environment:
-          REGION: 'Argentina'
-          USERNAME_LOGIN: ''
-          PASSWORD_LOGIN: ''
+          REGION: 'Brazil'
+          PATH_SAVE: '/src/'
+          PYTHONUNBUFFERED: 1
         container_name: crawler_yahoo
+        volumes:
+          - ./src:/src
         build: .
         entrypoint: ["python", "/src/main.py"]
