@@ -1,6 +1,5 @@
 import csv
 import json
-import logging
 import time
 
 from bs4 import BeautifulSoup
@@ -9,8 +8,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 from choices import Fields, XPATH_REGION
-
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+from settings import PATH_SAVE, logging
 
 
 class CrawlerFinanceYahoo:
@@ -21,22 +19,18 @@ class CrawlerFinanceYahoo:
         self.driver.get("https://finance.yahoo.com/screener/new")
 
     def get_options(self):
-        logging.info('GET OPTIONS')
+        logging.info('PEGAR OPÇÕES DE DRIVER')
         chrome_options = webdriver.ChromeOptions()
-        # chrome_options.add_argument("--disable-gpu")
-        # chrome_options.add_argument("--disable-extensions")
         chrome_options.add_argument("--disable-infobars")
         chrome_options.add_argument("--disable-notifications")
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
-        # chrome_options.add_argument('--disable-dev-shm-usage')
         return chrome_options
 
     def login(self):
-        logging.info('LOGIN DE USUARIO')
+        logging.info('LOGANDO USUARIO')
         signin = self.driver.find_element('id', 'header-signin-link')
         signin.click()
-        logging.info('LOGIN DE USUARIO 2')
         time.sleep(5)
 
         login_username = self.driver.find_element('id', 'login-username')
@@ -58,16 +52,17 @@ class CrawlerFinanceYahoo:
         login_id = self.driver.find_element('id', 'login-signin')
         login_id.click()
 
+        logging.info('USUÁRIO LOGADO COM SUCESSO')
         time.sleep(5)
 
     def click_element(self, xpath):
-        logging.info(f'GET ELEMENT {xpath}')
+        logging.info(f'CLICAR EM ELEMENTO {xpath}')
         element = self.driver.find_element(By.XPATH, xpath)
         element.click()
         time.sleep(5)
 
     def process_tbody(self, tbody):
-        logging.info('PROCESSAR TBODY')
+        logging.info('PROCESSAR TBODY (DADOS)')
         new_list = []
         for tr in tbody:
             new_tr = {}
@@ -78,12 +73,13 @@ class CrawlerFinanceYahoo:
                     new_tr['name'] = td.text
                 elif val == Fields.PRICE.value:
                     new_tr['price(intraday)'] = td.text
+                else:
+                    continue
             new_list.append(new_tr)
         return new_list
 
     def create_csv(self, new_list):
         logging.info('CRIAR CSV')
-        PATH_SAVE = config('PATH_SAVE', '')
         with open(f'{PATH_SAVE}{self.region}.csv', 'w') as csvfile:
             csv.writer(csvfile, delimiter=';').writerow(['name', 'symbol', 'price(intraday)'])
             for item in new_list:
@@ -112,36 +108,37 @@ class CrawlerFinanceYahoo:
     def create_json(self, new_list):
         logging.info('CRIAR JSON')
         json_object = json.dumps(new_list, indent=4)
-        PATH_SAVE = config('PATH_SAVE', '')
         with open(f"{PATH_SAVE}{self.region}.json", "w") as outfile:
             outfile.write(json_object)
 
     def select_new_region(self):
+        time.sleep(5)
         logging.info('SELECIONAR NOVA REGIÃO')
         xpath = XPATH_REGION.get(self.region)
-        logging.info(f'GET ELEMENT {xpath}')
+        logging.info(f'CLICAR EM NOVA REGIÃO {xpath}')
         element = self.driver.find_element(By.XPATH, xpath)
         self.driver.execute_script("arguments[0].click();", element)
-
-        # if not element.is_selected():
-        #     element.sel
         time.sleep(5)
 
     def run(self):
-        logging.info('PREPARANDO PARA LOGIN')
+        logging.info('***INICIANDO RASPAGEM DE DADOS***')
+        logging.info('PREPARANDO PARA LOGAR')
         self.login()
 
         # remove region
+        logging.info('REMOVER REGIÃO PADRÃO')
         self.click_element('//*[@id="screener-criteria"]/div[2]/div[1]/div[1]/div[1]/div/div[2]/ul/li[1]/button')
 
         # abre para selecionar region
+        logging.info('CLICAR PARA SELECIONAR REGIÃO')
         self.click_element('//*[@id="screener-criteria"]/div[2]/div[1]/div[1]/div[1]/div/div[2]/ul/li/div/div[1]/span')
 
         # seleciona nova region
-        time.sleep(5)
         self.select_new_region()
 
         # carrega tabela
+        logging.info('CLICAR PARA CARREGAR TABELA')
         self.click_element('//*[@id="screener-criteria"]/div[2]/div[1]/div[3]/button[1]')
 
         self.process_table()
+        logging.info('***RASPAGEM DE DADOS FINALIZADA COM SUCESSO***')

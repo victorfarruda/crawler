@@ -3,7 +3,7 @@ version: "3.8"
 services:
     crawler_yahoo:
         environment:
-          REGION: 'Brazil'
+          REGION: 'Argentina'
           PATH_SAVE: '/src/'
           PYTHONUNBUFFERED: 1
         container_name: crawler_yahoo
