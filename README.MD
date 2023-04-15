@@ -1,7 +1,7 @@
-# Serviço Crawler Yahooo Finance
+# Serviço Crawler Yahoo Finance
 
 Este Serviço Recebe como paramêtro uma Region(Brazil, Argentina, etc.) e busca os dados de name, symbol e price(intraday)
-da region selecionada no site: https://finance.yahoo.com/screener/new e cria dois arquivos um csv e um json dos dados.
+da region selecionada no site: https://finance.yahoo.com/screener/new e cria dois arquivos, um csv e um json dos dados.
 
 Para rodar o projeto basta rodar os comandos:
 ```
@@ -18,7 +18,8 @@ Você também pode rodar o crawler em um ambiente virtual, após criar o ambient
 pip install -r src/requirements.txt
 python src/main.py
 ```
-Por padrão os arquivos são salvos no diretório em que o comando é executado, sendo assim no final 2 arquivos são salvos na pasta em que o comando foi rodado tendo o nome da region selecionada.
+Você precisa alterar a variável de ambiente REGION para buscar os dados da region desejada. Por padrão a region é Brazil.
+Por padrão os arquivos são salvos no diretório em que o comando é executado, sendo assim no final 2 arquivos são salvos na pasta em que o comando foi rodado tendo os arquivos o nome da region selecionada.
 
 
 

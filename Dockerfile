@@ -26,7 +26,8 @@ RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
 ENV DISPLAY=:99
 
 ADD ./src /src
-RUN pip install -r src/requirements.txt
+COPY requirements.txt /
+RUN pip install -r /requirements.txt
 
 WORKDIR /src
 CMD python /src/main.py
