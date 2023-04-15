@@ -1,7 +1,7 @@
 from decouple import config
-from settings import logging
+from src.settings import logging
 
-from crawler import CrawlerFinanceYahoo
+from src.crawler import CrawlerFinanceYahoo
 
 
 if __name__ == '__main__':

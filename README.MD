@@ -7,6 +7,7 @@ Para rodar o projeto basta rodar os comandos:
 ```
 docker-compose build
 docker-compose up
+
 ```
 Você pode alterar a variável de ambiente REGION no docker-compose.yml e fazer a raspagem na region em que deseja.
 
@@ -21,6 +22,10 @@ python src/main.py
 Você precisa alterar a variável de ambiente REGION para buscar os dados da region desejada. Por padrão a region é Brazil.
 Por padrão os arquivos são salvos no diretório em que o comando é executado, sendo assim no final 2 arquivos são salvos na pasta em que o comando foi rodado tendo os arquivos o nome da region selecionada.
 
+Para rodar os testes utilize:
+```
+python -m unittest
+```
 
 
 As vezes podem ocorrer erros causados pela conexão ou pelo login, então tente rodar novamente.
