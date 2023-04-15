@@ -7,16 +7,15 @@ from decouple import config
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-from choices import Fields, XPATH_REGION
-from settings import PATH_SAVE, logging
+from src.choices import Fields, XPATH_REGION
+from src.settings import PATH_SAVE, logging
 
 
 class CrawlerFinanceYahoo:
     def __init__(self, region):
         logging.info('CRIANDO OBJETO DE CRAWLER')
         self.region = region
-        self.driver = webdriver.Chrome(chrome_options=self.get_options())
-        self.driver.get("https://finance.yahoo.com/screener/new")
+        self.driver = None
 
     def get_options(self):
         logging.info('PEGAR OPÇÕES DE DRIVER')
@@ -26,6 +25,9 @@ class CrawlerFinanceYahoo:
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
         return chrome_options
+
+    def get_driver(self):
+        return webdriver.Chrome(chrome_options=self.get_options())
 
     def login(self):
         logging.info('LOGANDO USUARIO')
@@ -81,13 +83,16 @@ class CrawlerFinanceYahoo:
     def create_csv(self, new_list):
         logging.info('CRIAR CSV')
         with open(f'{PATH_SAVE}{self.region}.csv', 'w') as csvfile:
-            csv.writer(csvfile, delimiter=';').writerow(['name', 'symbol', 'price(intraday)'])
+            writer = csv.writer(csvfile, delimiter=';')
+            writer.writerow(['name', 'symbol', 'price(intraday)'])
             for item in new_list:
-                csv.writer(csvfile, delimiter=';').writerow([
-                    item.get('name'),
-                    item.get('symbol'),
-                    item.get('price(intraday)')
-                ])
+                writer.writerow([item.get('name'), item.get('symbol'), item.get('price(intraday)')])
+
+    def create_json(self, new_list):
+        logging.info('CRIAR JSON')
+        json_object = json.dumps(new_list, indent=4)
+        with open(f"{PATH_SAVE}{self.region}.json", "w") as outfile:
+            outfile.write(json_object)
 
     def process_table(self):
         logging.info('PROCESSAR TABELA')
@@ -105,11 +110,9 @@ class CrawlerFinanceYahoo:
 
         self.driver.close()
 
-    def create_json(self, new_list):
-        logging.info('CRIAR JSON')
-        json_object = json.dumps(new_list, indent=4)
-        with open(f"{PATH_SAVE}{self.region}.json", "w") as outfile:
-            outfile.write(json_object)
+    def load_page(self):
+        self.driver = self.get_driver()
+        self.driver.get("https://finance.yahoo.com/screener/new")
 
     def select_new_region(self):
         time.sleep(5)
@@ -122,6 +125,8 @@ class CrawlerFinanceYahoo:
 
     def run(self):
         logging.info('***INICIANDO RASPAGEM DE DADOS***')
+        self.load_page()
+
         logging.info('PREPARANDO PARA LOGAR')
         self.login()
 
