@@ -10,13 +10,22 @@ from selenium.webdriver.common.by import By
 
 from choices import Fields, XPATH_REGION
 
+from selenium import webdriver
+
 
 class CrawlerFinanceYahoo:
-
     def __init__(self, region):
         self.region = region
-        self.driver = webdriver.Chrome('./chromedriver')
+        self.driver = webdriver.Chrome(chrome_options=self.get_options())
         self.driver.get("https://finance.yahoo.com/screener/new")
+
+    def get_options(self):
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("window-size=1400,2100")
+        chrome_options.add_argument('--disable-gpu')
+        return chrome_options
 
     def login(self):
         signin = self.driver.find_element('id', 'header-signin-link')

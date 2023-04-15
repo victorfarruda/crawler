@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+    crawler_yahoo:
+        environment:
+          REGION: 'Argentina'
+        container_name: crawler_yahoo
+        build: .
+        entrypoint: ["python", "/src/main.py"]
