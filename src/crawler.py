@@ -2,15 +2,12 @@ import csv
 import json
 import time
 
-
 from bs4 import BeautifulSoup
 from decouple import config
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 from choices import Fields, XPATH_REGION
-
-from selenium import webdriver
 
 
 class CrawlerFinanceYahoo:
@@ -85,10 +82,10 @@ class CrawlerFinanceYahoo:
     def process_table(self):
         # pega corpo de tabela
         XPATH = '//*[@id="scr-res-table"]/div[1]/table/tbody'
-        tabela = self.driver.find_element(By.XPATH, XPATH)
-        html_tabela = tabela.get_attribute('innerHTML')
+        table = self.driver.find_element(By.XPATH, XPATH)
+        html_table = table.get_attribute('innerHTML')
         time.sleep(5)
-        table_body = BeautifulSoup(html_tabela)
+        table_body = BeautifulSoup(html_table)
 
         new_list = self.process_tbody(table_body)
 
