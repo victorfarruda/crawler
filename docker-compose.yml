@@ -4,6 +4,8 @@ services:
     crawler_yahoo:
         environment:
           REGION: 'Argentina'
+          USERNAME_LOGIN: ''
+          PASSWORD_LOGIN: ''
         container_name: crawler_yahoo
         build: .
         entrypoint: ["python", "/src/main.py"]

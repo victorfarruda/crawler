@@ -34,15 +34,15 @@ class CrawlerFinanceYahoo:
         time.sleep(5)
 
         # username
-        USERNAME = config('USERNAME', 'victorarruda2023@yahoo.com')
-        login_username.send_keys(USERNAME)
+        USERNAME_LOGIN = config('USERNAME_LOGIN', 'victorarruda2023@yahoo.com')
+        login_username.send_keys(USERNAME_LOGIN)
         login_username.submit()
         time.sleep(5)
 
         # password
         login_password = self.driver.find_element('id', 'login-passwd')
-        PASSWORD = config('PASSWORD', 'NovaSenha123!!')
-        login_password.send_keys(PASSWORD)
+        PASSWORD_LOGIN = config('PASSWORD_LOGIN', 'NovaSenha123!!')
+        login_password.send_keys(PASSWORD_LOGIN)
 
         # logar
         login_id = self.driver.find_element('id', 'login-signin')
