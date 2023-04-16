@@ -23,9 +23,15 @@ Você também pode rodar o crawler em um ambiente virtual, após criar o ambient
 pip install -r requirements.txt
 python main.py
 ```
-Você precisa alterar a variável de ambiente REGION para buscar os dados da region desejada. Por padrão a 
-region é Brazil e os arquivos são salvos no diretório que há o main.py, sendo assim no final 
-2 arquivos são salvos na pasta em que o comando foi rodado tendo os arquivos o nome da region selecionada.
+Você precisa alterar a variável de ambiente REGION para buscar os dados da region desejada ou passar a região desejada como parâmetro.
+```
+python main.py <REGION>
+python main.py Brazil
+python main.py Argentina
+python main.py New Zealand
+```
+Por padrão a region é Brazil e os arquivos são salvos no diretório que há o main.py, sendo assim no final 
+2 arquivos são salvos na pasta sendo que arquivos tem o nome da region selecionada.
 
 Para rodar os testes utilize:
 ```
