@@ -1,5 +1,6 @@
 import csv
 import json
+import logging
 import time
 
 from bs4 import BeautifulSoup
@@ -8,7 +9,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 from src.choices import Fields, XPATH_REGION
-from src.settings import PATH_SAVE, logging
+from src.settings import PATH_SAVE
 
 
 class CrawlerFinanceYahoo:

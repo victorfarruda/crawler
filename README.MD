@@ -7,17 +7,21 @@ Para rodar o projeto basta rodar os comandos:
 ```
 docker-compose build
 docker-compose up
-
 ```
 Você pode alterar a variável de ambiente REGION no docker-compose.yml e fazer a raspagem na region em que deseja.
 
 No final 2 arquivos são salvos na pasta /src com o nome da region selecionada.
 
+Para rodar os testes utilize:
+```
+docker build -t crawler_teste .
+docker run -it crawler_teste python -m unittest
+```
 
-Você também pode rodar o crawler em um ambiente virtual, após criar o ambiente virtual utilize o comando:
+Você também pode rodar o crawler em um ambiente virtual, após criar o ambiente virtual utilize os comandos:
 ```
 pip install -r src/requirements.txt
-python src/main.py
+python main.py
 ```
 Você precisa alterar a variável de ambiente REGION para buscar os dados da region desejada. Por padrão a region é Brazil.
 Por padrão os arquivos são salvos no diretório em que o comando é executado, sendo assim no final 2 arquivos são salvos na pasta em que o comando foi rodado tendo os arquivos o nome da region selecionada.

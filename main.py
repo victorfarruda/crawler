@@ -1,8 +1,10 @@
+import logging
+
 from decouple import config
-from src.settings import logging
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 from src.crawler import CrawlerFinanceYahoo
-
 
 if __name__ == '__main__':
     REGION = config('REGION', 'Brazil')
