@@ -20,7 +20,7 @@ docker run -it crawler_teste python -m unittest
 
 Você também pode rodar o crawler em um ambiente virtual, após criar o ambiente virtual utilize os comandos:
 ```
-pip install -r src/requirements.txt
+pip install -r requirements.txt
 python main.py
 ```
 Você precisa alterar a variável de ambiente REGION para buscar os dados da region desejada. Por padrão a 
