@@ -28,7 +28,7 @@ class CrawlerFinanceYahoo:
         return chrome_options
 
     def get_driver(self):
-        return webdriver.Chrome(chrome_options=self.get_options())
+        return webdriver.Chrome(options=self.get_options())
 
     def login(self):
         logging.info('LOGANDO USUARIO')
